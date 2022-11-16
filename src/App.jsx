@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./App.css";
-import HeaderIcon from "./components/Title";
+import HeaderIcon from "./components/HeaderIcon";
 import LoginButton from "./components/LoginButton";
 import Subtitle from "./components/Subtitle";
+import vector from "./assets/vector.png"
 
 function App() {
 
@@ -35,6 +36,8 @@ function App() {
   const logout = () => {
     setToken("");
     window.localStorage.removeItem("token");
+    document.querySelector(".list").classList.add("hide");
+
   };
 
   const searchData = async (e) => {
@@ -45,7 +48,7 @@ function App() {
       },
       params: {
         q: searchKey,
-        limit: 3,
+        limit: 2,
         type: "album,artist,playlist,track",
       },
       
@@ -57,46 +60,38 @@ function App() {
     setPlaylist(data.playlists.items);
   };
 
-  const renderArtists = () => {
+  const RenderArtists = () => {
     return artists.map((artist) => (
-      <ul className="list" key={artist.id}>
-        <li className="item">
-          <img width="10%" src={artist.images[0].url} />
-          {artist.name}
+        <li className="item" key={artist.id}>
+          <img className="imgList" src={artist.images[0].url} />
+          <p className="titleItem">{artist.name}</p>
         </li>
-      </ul>
     ));
   };
-  const renderAlbum = () => {
+  const RenderAlbum = () => {
     return albums.map((album) => (
-      <ul className="list" key={album.id}>
-        <li className="item">
-          <img width="10%" src={album.images[0].url} />
-          {album.name}
+        <li className="item" key={album.id}>
+          <img className="imgList" src={album.images[0].url} />
+          <p className="titleItem">{album.name}</p>
         </li>
-      </ul>
     ));
   };
 
-  const renderTrack = () => {
+  const RenderTrack = () => {
     return tracks.map((track) => (
-      <ul className="list" key={track.id}>
-        <li className="item">
-          <img width="10%" src={track.album.images[0].url} />
-          {track.name}
+        <li className="item" key={track.id}>
+          <img className="imgList" src={track.album.images[0].url} />
+          <p className="titleItem">{track.name}</p>
         </li>
-      </ul>
     ));
   };
 
-  const renderPlaylits = () => {
+  const RenderPlaylits = () => {
     return playlists.map((playlist) => (
-      <ul className="list" key={playlist.id}>
-        <li className="item">
-          <img width="10%" src={playlist.images[0].url} />
-          {playlist.name}
+        <li className="item" key={playlist.id}>
+          <img className="imgList" src={playlist.images[0].url} />
+          <p className="titleItem">{playlist.name}</p>
         </li>
-      </ul>
     ));
   };
 
@@ -111,23 +106,27 @@ function App() {
           <button className="Btn-logout" onClick={logout}>Logout</button>
         )}
 
-        {token ? (
-           <form onSubmit={searchData}>
-           <input type="text" className="searchBar" aria-label="searchBar" onChange={(e) => setSearchKey(e.target.value)}  />
-           <button className="searchBtn"type={"submit"}></button>
+   {token ? (
+            
+           <form onSubmit={searchData} className="formSearch">
+           <input type="text" className="searchBar" aria-label="searchBar" onChange={(e) => setSearchKey(e.target.value)}/>
+           <button className="searchBtn" type={"submit"} aria-label="Search for music, artist, track or playlist"></button>
+            
            </form>
         ) : (
           <Subtitle></Subtitle>
         )}
 
       </header>
-      <main className="listContainer">
-        {renderArtists()}
-        {renderAlbum()}
-        {renderTrack()}
-        {renderPlaylits()}
-      </main>
-    </div>
+      <div className="listContainer">
+        <ul className="list">
+        <RenderArtists></RenderArtists>
+        <RenderAlbum></RenderAlbum>
+        <RenderTrack></RenderTrack>
+        <RenderPlaylits></RenderPlaylits>
+        </ul>
+      </div>
+</div>
   );
 }
 

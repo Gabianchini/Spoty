@@ -1,6 +1,6 @@
 const LoginButton = () => {
     const CLIENT_ID = "526e1a9972be468a904169c9f6f850e1"
-    const REDIRECT_URI = "http://localhost:5174/callback/"
+    const REDIRECT_URI = "http://localhost:5173/callback/"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
   
