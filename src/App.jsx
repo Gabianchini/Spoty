@@ -110,8 +110,7 @@ function App() {
             
            <form onSubmit={searchData} className="formSearch">
            <input type="text" className="searchBar" aria-label="searchBar" onChange={(e) => setSearchKey(e.target.value)}/>
-           <button className="searchBtn" type={"submit"} aria-label="Search for music, artist, track or playlist"></button>
-            
+           <button className="searchBtn" type={"submit"} aria-label="Search for music, artist, track or playlist"></button> 
            </form>
         ) : (
           <Subtitle></Subtitle>
