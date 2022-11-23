@@ -6,5 +6,4 @@
 ![SpotySearch Home](Spotylogin.PNG)
 ![SpotySearch Auth](Spotysearchauthenthify.PNG)
 ![SpotySearch SearchBar](Spotysearch-search.PNG)
-![SpotySearch Home](Spotylogin.PNG)
 ![SpotySearch SearchResults](Spotysearch-results.PNG)
